@@ -12,11 +12,12 @@
     fx:controller="com.keplerboyce.perfectpitch.Controller"
     styleClass="center, p-md, gap-sm"
 >
+    <Button fx:id="reset" text="Reset"/>
     <Label fx:id="results" styleClass="text-xl"/>
     <Label fx:id="rate" styleClass="text-gray, pb-lg"/>
     <HBox styleClass="center, gap-sm, pb-lg">
-        <Button fx:id="repeat" text="Repeat Sound"/>
-        <Button fx:id="reveal" text="Reveal Answer"/>
+        <Button fx:id="repeat" text="Play Note"/>
+        <Button fx:id="reveal" text="Reveal"/>
     </HBox>
 
     <HBox fx:id="topRow" styleClass="center, gap-sm"/>
