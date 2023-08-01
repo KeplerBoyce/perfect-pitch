@@ -151,7 +151,7 @@ public class Controller {
             button.getStyleClass().remove("bg-green");
             button.getStyleClass().remove("bg-gray");
             button.getStyleClass().remove("text-gray");
-        };
+        }
     }
 
     private void playCurrentNote() {
@@ -189,7 +189,7 @@ public class Controller {
     }
 
     private byte[] createSinWaveBuffer(double freq) {
-        int samples = (int) ((NOTE_DURATION_MS * SAMPLE_RATE) / 1000);
+        int samples = ((NOTE_DURATION_MS * SAMPLE_RATE) / 1000);
         byte[] output = new byte[samples];
         double period = (double) SAMPLE_RATE / freq;
         for (int i = 0; i < output.length; i++) {
