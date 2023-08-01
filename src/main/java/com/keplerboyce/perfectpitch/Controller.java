@@ -33,7 +33,9 @@ public class Controller {
     private boolean started = false;
     private boolean revealed = false;
     private String currentNote;
+    private int currentOctave = 0;
 
+    private static final int NUM_OCTAVES = 4;
     private static final int NOTE_DURATION_MS = 500;
     private static final int SAMPLE_RATE = 16 * 1024;
     private static final AudioFormat audioFormat = new AudioFormat(SAMPLE_RATE, 8, 1, true, true);
@@ -74,6 +76,7 @@ public class Controller {
         String[] allNotes = Stream.concat(Arrays.stream(topRowTexts), Arrays.stream(bottomRowTexts))
             .toArray(String[]::new);
         currentNote = allNotes[ThreadLocalRandom.current().nextInt(allNotes.length)];
+        currentOctave = ThreadLocalRandom.current().nextInt(NUM_OCTAVES);
     }
 
     private void updateResults() {
@@ -169,8 +172,7 @@ public class Controller {
             Map.entry("A#/Bb", new Double[]{233.08, 466.16, 932.33, 1864.66}),
             Map.entry("B", new Double[]{246.94, 493.88, 987.77, 1975.53})
         );
-        Double[] freqs = noteFreqs.get(currentNote);
-        new Thread(() -> playFrequency(freqs[ThreadLocalRandom.current().nextInt(freqs.length)])).start();
+        new Thread(() -> playFrequency(noteFreqs.get(currentNote)[currentOctave])).start();
     }
 
     private void playFrequency(double freq) {
