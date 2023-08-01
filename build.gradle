@@ -4,6 +4,7 @@ plugins {
     id 'org.javamodularity.moduleplugin' version '1.8.12'
     id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.25.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group 'com.keplerboyce'
@@ -26,7 +27,7 @@ tasks.withType(JavaCompile).configureEach {
 
 application {
     mainModule = 'com.keplerboyce.perfectpitch'
-    mainClass = 'com.keplerboyce.perfectpitch.App'
+    mainClass = 'com.keplerboyce.perfectpitch.Main'
 }
 
 javafx {
@@ -54,4 +55,10 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.keplerboyce.perfectpitch.Main'
+    }
 }
