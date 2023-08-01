@@ -1,0 +1,32 @@
+.root {
+    -fx-font-size: 16;
+    -fx-font-family: "Inter";
+}
+
+.gap-sm {
+    -fx-spacing: 4;
+}
+
+.p-md {
+    -fx-padding: 16;
+}
+
+.pb-lg {
+    -fx-padding: 0 0 24 0;
+}
+
+.center {
+    -fx-alignment: CENTER;
+}
+
+.text-xl {
+    -fx-font-size: 36;
+}
+
+.text-gray {
+    -fx-text-fill: #888;
+}
+
+.bg-gray {
+    -fx-background-color: #bbb;
+}
