@@ -155,21 +155,22 @@ public class Controller {
     }
 
     private void playCurrentNote() {
-        Map<String, Double> noteFreqs = Map.ofEntries(
-            Map.entry("C", 261.63),
-            Map.entry("C#/Db", 277.18),
-            Map.entry("D", 293.66),
-            Map.entry("D#/Eb", 311.13),
-            Map.entry("E", 329.62),
-            Map.entry("F", 349.23),
-            Map.entry("F#/Gb", 369.99),
-            Map.entry("G", 392.00),
-            Map.entry("G#/Ab", 415.30),
-            Map.entry("A", 440.00),
-            Map.entry("A#/Bb", 466.16),
-            Map.entry("B", 493.88)
+        Map<String, Double[]> noteFreqs = Map.ofEntries(
+            Map.entry("C", new Double[]{130.81, 261.63, 523.25, 1046.50}),
+            Map.entry("C#/Db", new Double[]{138.59, 277.18, 554.37, 1108.73}),
+            Map.entry("D", new Double[]{146.83, 293.66, 587.33, 1174.66}),
+            Map.entry("D#/Eb", new Double[]{155.56, 311.13, 622.25, 1244.51}),
+            Map.entry("E", new Double[]{164.81, 329.62, 659.25, 1318.51}),
+            Map.entry("F", new Double[]{174.61, 349.23, 698.46, 1396.91}),
+            Map.entry("F#/Gb", new Double[]{185.00, 369.99, 739.99, 1479.98}),
+            Map.entry("G", new Double[]{196.00, 392.00, 783.99, 1567.98}),
+            Map.entry("G#/Ab", new Double[]{207.65, 415.30, 830.61, 1661.22}),
+            Map.entry("A", new Double[]{220.00, 440.00, 880.00, 1760.00}),
+            Map.entry("A#/Bb", new Double[]{233.08, 466.16, 932.33, 1864.66}),
+            Map.entry("B", new Double[]{246.94, 493.88, 987.77, 1975.53})
         );
-        new Thread(() -> playFrequency(noteFreqs.get(currentNote))).start();
+        Double[] freqs = noteFreqs.get(currentNote);
+        new Thread(() -> playFrequency(freqs[ThreadLocalRandom.current().nextInt(freqs.length)])).start();
     }
 
     private void playFrequency(double freq) {
